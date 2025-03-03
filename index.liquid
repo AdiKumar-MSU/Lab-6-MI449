@@ -1,7 +1,23 @@
 ---
 layout: layout.liquid
-title: 11ty Boilerplate
+title: Random Names
 ---
 
-<h1>Yet Another 11ty <strong>Boilerplate</strong></h1>
-<img alt="pine" src="/images/pine.png" width="50" />
+<div x-data="{ 
+    names: ['Adi', 'Matt', 'Omar', 'Alissa', 'Rohan', 'Larry', 'Fatima', 'Orson', 'David', 'Felix'],
+    name: '',
+    show: true,
+    randomName() {
+        this.show = false;
+        setTimeout(() => {
+            let i = Math.floor(Math.random() * this.names.length);
+            this.name = this.names[i];
+            this.show = true;
+        }, 300);
+    }
+}">
+    
+    <h1 x-show="show" x-text="name" x-transition.opacity.duration.300ms></h1>
+    <button @click="randomName()">Name</button>
+
+</div>
